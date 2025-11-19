@@ -1,0 +1,9 @@
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-1.weights.h5	test_acc=0.7246
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-2.weights.h5	test_acc=0.6847
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-3.weights.h5	test_acc=0.5913
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-4.weights.h5	test_acc=0.8626
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-5.weights.h5	test_acc=0.8458
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-6.weights.h5	test_acc=0.7637
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-7.weights.h5	test_acc=0.8095
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-8.weights.h5	test_acc=0.7348
+C:\Users\35696\BCI_DTNet_copy\EEGNet_BCI2b/results_DANN_EEGNet_BCI2b_LOSO\saved_models\run-1\subject-9.weights.h5	test_acc=0.7633

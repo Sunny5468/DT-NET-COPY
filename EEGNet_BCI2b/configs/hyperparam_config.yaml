@@ -1,0 +1,86 @@
+# DANN-EEGNet 超参数搜索配置文件
+# 用于自动调优脚本 hyperparameter_tuning.py
+
+# 实验设置
+n_subjects: 9  # 被试数量（LOSO交叉验证）
+
+# 超参数搜索空间
+hyperparameters:
+  # 训练轮数
+  epochs:
+    values: [100, 150, 200]
+    description: "训练的总epoch数，DANN通常需要较多epoch才能充分学习域不变特征"
+  
+  # 学习率
+  lr:
+    values: [0.0001, 0.0005, 0.001, 0.002]
+    description: "Adam优化器的学习率"
+  
+  # Gamma参数（Lambda调度）
+  gamma:
+    values: [8.0, 10.0, 12.0]
+    description: "Lambda调度函数的gamma参数，控制域对抗强度增长速度"
+  
+  # 批次大小
+  batch_size:
+    values: [32, 64, 128]
+    description: "训练批次大小"
+  
+  # 标签分类器损失权重
+  label_weight:
+    values: [1.0, 1.5, 2.0]
+    description: "标签分类器的损失权重（相对于域分类器）"
+  
+  # 域分类器损失权重
+  domain_weight:
+    values: [0.5, 1.0, 1.5]
+    description: "域分类器的损失权重"
+
+# 固定参数（不参与搜索）
+fixed_params:
+  seed: 42
+  isStandard: true  # 是否标准化数据
+  val_split: 0.2    # 验证集比例
+  use_early_stopping: true  # 是否使用早停
+  patience: 20      # 早停耐心值
+
+# 快速测试配置（用于调试，注释掉下面的配置使用完整搜索）
+# quick_test:
+#   hyperparameters:
+#     epochs:
+#       values: [50]
+#     lr:
+#       values: [0.001]
+#     gamma:
+#       values: [10.0]
+#     batch_size:
+#       values: [64]
+#     label_weight:
+#       values: [1.5]
+#     domain_weight:
+#       values: [0.5]
+#   n_subjects: 2  # 仅测试2个被试
+
+# 搜索策略说明：
+# 当前配置将测试 3×4×3×3×3×3 = 972 个配置组合
+# 每个配置在9个被试上进行LOSO，共需训练 972×9 = 8748 个模型
+# 
+# 如果计算资源有限，建议：
+# 1. 减少参数值数量（例如每个参数只取2-3个值）
+# 2. 先进行粗粒度搜索，再在最优区域细化搜索
+# 3. 使用quick_test配置进行初步筛选
+# 4. 考虑使用贝叶斯优化（需要额外实现）
+
+# 推荐的两阶段搜索策略：
+# 
+# 阶段1：粗粒度搜索（快速）
+# - epochs: [100, 200]
+# - lr: [0.0005, 0.001]
+# - gamma: [8.0, 10.0]
+# - batch_size: [64]
+# - label_weight: [1.0, 1.5]
+# - domain_weight: [0.5, 1.0]
+# 总计: 2×2×2×1×2×2 = 32 个配置，32×9 = 288 个模型
+#
+# 阶段2：精细搜索（在阶段1最优区域附近）
+# 根据阶段1的结果，缩小搜索范围，增加参数精度

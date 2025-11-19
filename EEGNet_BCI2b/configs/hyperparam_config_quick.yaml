@@ -1,0 +1,42 @@
+# 快速测试配置 - 用于验证超参数调优脚本功能
+# 仅测试少量配置组合和被试，用于调试
+
+n_subjects: 2  # 仅测试前2个被试
+
+# 超参数搜索空间（每个参数只取1-2个值）
+hyperparameters:
+  epochs:
+    values: [30, 50]  # 减少epoch数加快测试
+    description: "训练的总epoch数"
+  
+  lr:
+    values: [0.001]
+    description: "学习率"
+  
+  gamma:
+    values: [10.0]
+    description: "Lambda调度的gamma参数"
+  
+  batch_size:
+    values: [64]
+    description: "批次大小"
+  
+  label_weight:
+    values: [1.0, 1.5]
+    description: "标签分类器损失权重"
+  
+  domain_weight:
+    values: [0.5]
+    description: "域分类器损失权重"
+
+# 固定参数
+fixed_params:
+  seed: 42
+  isStandard: true
+  val_split: 0.2
+  use_early_stopping: true
+  patience: 10  # 减小patience加快测试
+
+# 此配置将测试: 2×1×1×1×2×1 = 4 个配置组合
+# 每个配置在2个被试上测试，共 4×2 = 8 个模型
+# 预计耗时: 约 10-20 分钟（取决于硬件）
